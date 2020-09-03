@@ -1,4 +1,4 @@
 .cache/
-dis/
+dist/
 node_modules/
 .code/
