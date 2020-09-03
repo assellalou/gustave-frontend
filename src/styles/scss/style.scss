@@ -6,9 +6,9 @@
   box-sizing: border-box;
 }
 
-* + * {
-  margin-top: 1rem;
-}
+// * + * {
+//   margin-top: 1rem;
+// }
 
 html,
 body {
@@ -44,13 +44,21 @@ code {
 }
 
 .content {
-  padding: 20px;
+  // padding: 20px;
 }
 
 .header {
   padding: 10px;
-  background: #ddd;
-  border-bottom: 1px solid #aaa;
+  margin: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  div {
+    margin: 0;
+    a {
+      margin: 0 10px;
+    }
+  }
 }
 input {
   font-size: 1rem;
@@ -83,4 +91,32 @@ form {
   flex-direction: column;
   max-width: 900px;
   margin: auto;
+}
+
+.modal {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.486);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .modal-card {
+    width: 350px;
+    height: 200px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 1s ease-in;
+  }
+}
+.invisible {
+  display: none;
 }

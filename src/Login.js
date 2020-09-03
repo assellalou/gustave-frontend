@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import { setToken } from "./utils/Common";
+import Modal from "./components/Modal";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
@@ -23,13 +24,17 @@ const Login = (props) => {
       })
       .catch((error) => {
         setLoading(false);
-        if (error.response.status === 401) setError(error.response.data.error);
-        else setError("Something went wrong. Please try gain later.");
+        if (error.response.status === 401)
+          setError({ message: error.response.data.error, action: {} });
+        // else setError("Something went wrong. Please try gain later.");
+        else
+          setError({ message: "Something went wrong. Please try gain later." });
       });
   };
 
   return (
     <>
+      {error ? <Modal item={error} /> : ""}
       <h1>Login</h1>
       <form>
         <input
@@ -44,7 +49,7 @@ const Login = (props) => {
         />
         {error && (
           <>
-            <small style={{ color: "red" }}>{error}</small>
+            <small style={{ color: "red" }}>{error.message}</small>
           </>
         )}
         <input

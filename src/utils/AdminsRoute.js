@@ -2,14 +2,14 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { getToken, getUser } from "./Common";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const AdminsRoute = ({ component: Component, ...rest }) => {
   let guest = getUser();
   return (
     <Route
       {...rest}
       render={(props) =>
         guest ? (
-          getToken() && !guest.is_admin && !guest.is_teacher ? (
+          getToken() && guest.is_admin ? (
             <Component {...props} />
           ) : guest.is_admin ? (
             <Redirect
@@ -33,4 +33,4 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     />
   );
 };
-export default PrivateRoute;
+export default AdminsRoute;

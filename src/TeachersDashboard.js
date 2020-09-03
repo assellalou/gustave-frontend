@@ -3,9 +3,9 @@ import { removeUserSession, getUser, getToken } from "./utils/Common";
 import Axios from "axios";
 import CourseCard from "./components/CourseCard";
 
-const Dashboard = (props) => {
+const TeachersDashboard = (props) => {
+  const [loadingCourses, SetloadingCourses] = useState(true);
   const [courses, setCourses] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = getToken();
@@ -15,12 +15,12 @@ const Dashboard = (props) => {
     }
     Axios.get("http://localhost:8000/api/teacher/courses", {
       headers: {
-        Authorization: "Bearer" + token,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((res) => {
+        SetloadingCourses(false);
         setCourses(res.data.courses);
-        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -32,12 +32,12 @@ const Dashboard = (props) => {
     props.history.push("/login");
   };
 
-  if (loading && getToken()) {
-    return <div className="content">Loading...</div>;
+  if (loadingCourses && getToken()) {
+    return <div className="content">Loading Courses...</div>;
   }
   return (
     <>
-      <h1>Dashboard</h1>
+      <h1>Teachers Dashboard</h1>
       <button onClick={handleLogout}> Log out</button>
 
       {courses.length ? (
@@ -48,4 +48,4 @@ const Dashboard = (props) => {
     </>
   );
 };
-export default Dashboard;
+export default TeachersDashboard;
