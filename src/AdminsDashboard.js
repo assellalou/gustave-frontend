@@ -5,6 +5,10 @@ import { getUser, removeUserSession } from "./utils/Common";
 import admin from "./images/admin.png";
 import Home from "./Home";
 import AdminsRoute from "./utils/AdminsRoute";
+import Students from "./admin/Students";
+import Teachers from "./admin/Teachers";
+import Courses from "./admin/Courses";
+import Classes from "./admin/Classes";
 
 const AdminsDashboard = (props) => {
   let user = getUser();
@@ -77,7 +81,10 @@ const AdminsDashboard = (props) => {
           </SideNavItems>
         </SideNavContainer>
         <Switch>
-          <AdminsRoute exact path="/admin/courses" component={Home} />
+          <AdminsRoute exact path="/admin/students" component={Students} />
+          <AdminsRoute exact path="/admin/teachers" component={Teachers} />
+          <AdminsRoute exact path="/admin/courses" component={Courses} />
+          <AdminsRoute exact path="/admin/classes" component={Classes} />
         </Switch>
         {/* <h1 className="area">Admins Dashboard </h1> */}
       </ContainerFluid>
