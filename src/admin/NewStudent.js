@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { getToken } from "../utils/Common";
 
@@ -12,6 +12,23 @@ const NewStudent = () => {
   const [password, setPassword] = useState();
   const [passwordConfirmation, setPasswordConfirmation] = useState();
   const token = getToken();
+  const [classes, setclasses] = useState([]);
+  const [selectedClasse, setSelectedClasse] = useState();
+  useEffect(() => {
+    const token = getToken();
+    Axios.get("http://localhost:8000/api/admin/classes", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        setclasses(res.data.classes);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const addStudent = (e) => {
     e.preventDefault();
     Axios({
@@ -24,6 +41,7 @@ const NewStudent = () => {
         username: username,
         city: city,
         adresse: adresse,
+        classe: selectedClasse,
         password: password,
         password_confirmation: passwordConfirmation,
         is_admin: 0,
@@ -66,6 +84,13 @@ const NewStudent = () => {
         placeholder="Username"
         onChange={(e) => setUsername(e.target.value)}
       />
+      <select name="classe" onChange={(e) => setSelectedClasse(e.target.value)}>
+        {classes.map((item) => (
+          <option value={item.id} key={item.id}>
+            {item.nomination}
+          </option>
+        ))}
+      </select>
       <select name="city" onChange={(e) => setCity(e.target.value)}>
         <option value="Meknes">Meknes</option>
         <option value="Rabat">Rabat</option>

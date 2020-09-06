@@ -31,18 +31,8 @@ const Courses = () => {
   }
   return (
     <>
-      {courses ? (
-        Object.keys(courses).map((key) => (
-          <>
-            <h1>Classe {key}</h1>
-            {courses[key].map((course) => (
-              <>
-                {""}
-                <h3>{course.name}</h3>
-              </>
-            ))}
-          </>
-        ))
+      {courses.length ? (
+        courses.map((item) => <h1>{item.name}</h1>)
       ) : (
         <h1>No Courses to show</h1>
       )}

@@ -21,6 +21,7 @@
     "react-router-dom": "^5.2.0",
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "^1.8.5",
+    "styl": "^0.2.9",
     "styled-components": "^5.1.1"
   }
 }
