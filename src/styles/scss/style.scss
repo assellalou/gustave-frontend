@@ -60,7 +60,10 @@ code {
     }
   }
 }
-input {
+input,
+select,
+textarea,
+option {
   font-size: 1rem;
   padding: 10px 5px;
   margin-top: 1rem;
@@ -119,4 +122,17 @@ form {
 }
 .invisible {
   display: none;
+}
+
+table {
+  border-collapse: collapse;
+  padding: 20px;
+  tbody {
+    tr {
+      padding: 10px 20px;
+      td {
+        padding: 10px 20px;
+      }
+    }
+  }
 }
